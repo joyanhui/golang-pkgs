@@ -1,4 +1,4 @@
-module zapLogger
+module github.com/joyanhui/golang-pkgs/pkgs/zapLogger
 
 go 1.24.4
 
