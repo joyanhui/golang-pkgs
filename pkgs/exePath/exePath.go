@@ -3,9 +3,11 @@ package exePath
 import (
 	"log"
 	"os"
+	"path/filepath"
 )
 
-func GetExePath(isDev bool) string {
+// 实际是dit
+func GetExeDir(isDev bool) string {
 	if isDev {
 		wd, err := os.Getwd()
 		if err != nil {
@@ -17,6 +19,6 @@ func GetExePath(isDev bool) string {
 		if err != nil {
 			log.Fatalf("cannot get executable path: %v", err)
 		}
-		return executablePath
+		return filepath.Dir(executablePath)
 	}
 }
