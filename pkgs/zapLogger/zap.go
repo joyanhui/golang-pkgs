@@ -27,7 +27,7 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 		if isDevMode {
 			config.DisableCaller = false
 		} else {
-			config.DisableCaller = true
+			config.DisableCaller = true // debug 模式不显示具体文件名字
 		}
 
 		plainLogger, err := config.Build()
@@ -42,8 +42,7 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 }
 
 func parseLogLevel(levelStr string) zapcore.Level {
-	fmt.Println("levelStr", levelStr)
-
+	fmt.Println("ENV LOG_LEVEL string", levelStr)
 	switch strings.ToUpper(levelStr) { // 将输入字符串转换为大写进行匹配
 	case "DEBUG":
 		return zapcore.DebugLevel
