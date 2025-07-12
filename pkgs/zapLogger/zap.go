@@ -42,9 +42,10 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 }
 
 func parseLogLevel(levelStr string) zapcore.Level {
+	fmt.Println("levelStr", levelStr)
+
 	switch strings.ToUpper(levelStr) { // 将输入字符串转换为大写进行匹配
 	case "DEBUG":
-		fmt.Println("isDebug")
 		return zapcore.DebugLevel
 	case "INFO":
 		return zapcore.InfoLevel
