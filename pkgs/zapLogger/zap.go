@@ -13,17 +13,17 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 	var logger *zap.SugaredLogger
 	{
 		encoderCfg := zap.NewProductionEncoderConfig()
-		encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
-		encoderCfg.EncodeLevel = zapcore.CapitalLevelEncoder
+		encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder   // 时间编码格式
+		encoderCfg.EncodeLevel = zapcore.CapitalLevelEncoder // 级别编码格式，例如 INFO, DEBUG
 
 		config := zap.NewProductionConfig()
-		config.EncoderConfig = encoderCfg
-		config.OutputPaths = []string{"stderr"}
-		config.Encoding = "console" // 输出格式 console 或 json
-		config.ErrorOutputPaths = []string{"stderr"}
-		logLevelStr := os.Getenv("LOG_LEVEL") // 日志登基
+		config.EncoderConfig = encoderCfg            // 应用编码器配置
+		config.OutputPaths = []string{"stderr"}      // 日志输出路径，这里是标准错误输出
+		config.Encoding = "console"                  // 输出格式：console 或 json
+		config.ErrorOutputPaths = []string{"stderr"} // 错误日志输出路径
+		logLevelStr := os.Getenv("LOG_LEVEL")        // 日志登基
 		effectiveLogLevel := parseLogLevel(logLevelStr)
-		config.Level = zap.NewAtomicLevelAt(effectiveLogLevel)
+		config.Level = zap.NewAtomicLevelAt(effectiveLogLevel) // 根据解析到的级别设置日志级别
 		if isDevMode {
 			config.DisableCaller = false
 		} else {
@@ -44,6 +44,7 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 func parseLogLevel(levelStr string) zapcore.Level {
 	switch strings.ToUpper(levelStr) { // 将输入字符串转换为大写进行匹配
 	case "DEBUG":
+		fmt.Println("isDebug")
 		return zapcore.DebugLevel
 	case "INFO":
 		return zapcore.InfoLevel
