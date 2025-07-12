@@ -19,7 +19,7 @@ func SendError(w http.ResponseWriter, message string, statusCode int) {
 	json.NewEncoder(w).Encode(errorResponse)
 }
 
-// SendJSON 发送JSON响应
+// response_yh.SendJSON 发送JSON响应
 func SendJSON(w http.ResponseWriter, data any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
