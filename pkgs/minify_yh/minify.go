@@ -2,6 +2,7 @@ package minify_yh
 
 import (
 	"bytes"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -58,4 +59,18 @@ func Exe_minify(content []byte, path string, ext string) ([]byte, error) {
 		return content, err // 如果压缩失败，返回原始内容
 	}
 	return result.Bytes(), nil // 返回压缩后的内容
+}
+
+func IsMinifyableType(path string) bool { // IsMinifyableType 检查文件类型是否可以进行压缩
+	ext := filepath.Ext(path)
+	switch ext {
+	case ".html", ".shtml", ".htm", ".shtm",
+		".css",
+		".js",
+		".json",
+		".xml":
+		return true
+	default:
+		return false
+	}
 }
