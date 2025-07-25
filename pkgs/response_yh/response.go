@@ -23,14 +23,12 @@ func SendError(w http.ResponseWriter, message string, statusCode int) {
 func SendJSON(w http.ResponseWriter, data any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
-
 	dataNew := map[string]any{
 		"error":   false,
 		"code":    1,
 		"data":    data,
 		"message": "ok",
 	}
-
 	if err := json.NewEncoder(w).Encode(dataNew); err != nil {
 		// 如果编码失败，发送错误响应
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
