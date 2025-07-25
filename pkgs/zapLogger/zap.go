@@ -13,8 +13,8 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 	var logger *zap.SugaredLogger
 	{
 		encoderCfg := zap.NewProductionEncoderConfig()
-		encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder   // 时间编码格式
-		encoderCfg.EncodeLevel = zapcore.CapitalLevelEncoder // 级别编码格式，例如 INFO, DEBUG
+		encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder        // 时间编码格式
+		encoderCfg.EncodeLevel = zapcore.CapitalColorLevelEncoder // 级别编码格式，例如 INFO, DEBUG
 
 		config := zap.NewProductionConfig()
 		config.EncoderConfig = encoderCfg            // 应用编码器配置
