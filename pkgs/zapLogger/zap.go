@@ -42,7 +42,7 @@ func InitZapLogger(isDevMode bool) (*zap.SugaredLogger, error) {
 }
 
 func parseLogLevel(levelStr string) zapcore.Level {
-	fmt.Println("ENV LOG_LEVEL string", levelStr)
+	fmt.Println("ENV LOG_LEVEL DEBUG INFO WARN ERROR DPANIC PANIC FATAL current string :", levelStr)
 	switch strings.ToUpper(levelStr) { // 将输入字符串转换为大写进行匹配
 	case "DEBUG":
 		return zapcore.DebugLevel
